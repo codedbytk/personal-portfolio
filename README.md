@@ -5,9 +5,9 @@ Built with **HTML, Tailwind CSS, and JavaScript**, this site blends creativity a
 
 ---
 
-## 🚀 Live Demo
+## 🚀 Live Website
 
-🔗 **Visit the website:** [https://codedbytk.github.io/personal-portfolio](https://codedbytk.github.io/Portfolio/)
+🔗 **Visit the website:** [https://codedbytk.github.io/personal-portfolio/](https://codedbytk.github.io/personal-portfolio/)
 
 ---
 
