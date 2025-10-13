@@ -34,18 +34,6 @@ Built with **HTML, Tailwind CSS, and JavaScript**, this site blends creativity a
 
 ---
 
-## 📂 Project Structure
-
-|├── index.html # Main HTML file|
-|├── /img # Folder for images (profile, project thumbnails)|
-|│ ├── profile.png|
-|│ ├── background.png|
-|│ ├── ecom.png|
-|│ └── harare.jpg|
-|└── README.md # This file|
-
----
-
 🧑‍💻 Author
 
 - 👤 Takudzwa Shereni
