@@ -36,26 +36,26 @@ Built with **HTML, Tailwind CSS, and JavaScript**, this site blends creativity a
 
 ## 📂 Project Structure
 
-├── index.html # Main HTML file
-├── /img # Folder for images (profile, project thumbnails)
-│ ├── profile.png
-│ ├── background.png
-│ ├── ecom.png
-│ └── harare.jpg
-└── README.md # This file
+|├── index.html # Main HTML file|
+|├── /img # Folder for images (profile, project thumbnails)|
+|│ ├── profile.png|
+|│ ├── background.png|
+|│ ├── ecom.png|
+|│ └── harare.jpg|
+|└── README.md # This file|
 
 ---
 
 🧑‍💻 Author
 
-👤 Takudzwa Shereni
-Full-Stack Developer & Designer
-🌍 Bulawayo, Zimbabwe
+- 👤 Takudzwa Shereni
+- Full-Stack Developer & Designer
+- 🌍 Bulawayo, Zimbabwe
 
----
+Contact me on:
 
-GitHub: CodedByTK
-WhatsApp: +263778763068
-Email: princepardonsherz@gmail.com
+- GitHub: CodedByTK
+- WhatsApp: +263778763068
+- Email: princepardonsherz@gmail.com
 
 ---
