@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Takudzwa Shereni | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Urbanist:wght@800&display=swap');
+
+    :root {
+      --neon-purple: #9d4edd;
+      --electric-blue: #3a86ff;
+      --matte-black: #212529;
+      --neon-pink: #ff006e;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: black;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .header-font {
+      font-family: 'Urbanist', sans-serif;
+    }
+
+    .neon-text {
+      text-shadow: 0 0 5px var(--neon-purple), 0 0 15px var(--neon-purple);
+    }
+
+    .neon-border {
+      box-shadow: 0 0 5px var(--electric-blue), 0 0 15px var(--electric-blue);
+      border: 1px solid var(--electric-blue);
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 0.7;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0.7;
+      }
+    }
+
+    .subway-line {
+      position: relative;
+    }
+
+    .subway-line::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--neon-purple), var(--electric-blue));
+      transition: width 0.5s ease;
+    }
+
+    .subway-line:hover::after {
+      width: 100%;
+    }
+
+    .graffiti-btn {
+      background: linear-gradient(45deg, var(--neon-purple), var(--electric-blue));
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .graffiti-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+      z-index: -1;
+    }
+
+    .graffiti-btn:hover::before {
+      left: 100%;
+    }
+
+    .glow {
+      filter: drop-shadow(0 0 5px var(--neon-purple));
+    }
+
+    .project-card {
+      background: rgba(33, 37, 41, 0.8);
+      border-left: 4px solid var(--electric-blue);
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .tip-bubble {
+      position: relative;
+      background: rgba(58, 134, 255, 0.2);
+      border-radius: 15px;
+      border: 1px solid var(--electric-blue);
+    }
+
+    .tip-bubble::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid var(--electric-blue);
+    }
+
+    /* Hide all project pages by default */
+    .page-section {
+      display: none;
+    }
+
+    /* Show active page */
+    .page-section.active {
+      display: block;
+    }
+
+    /* Scrollbar styling for project content */
+    .project-content {
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    /* Scrollbar styles */
+    .project-content::-webkit-scrollbar {
+      width: 8px;
+    }
+    .project-content::-webkit-scrollbar-thumb {
+      background-color: var(--electric-blue);
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header class="relative overflow-hidden">
+    <!-- Animated background -->
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-gradient-to-b from-black to-purple-900 opacity-80"></div>
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80" alt="City skyline at night with neon lights" class="w-full h-full object-cover opacity-30" />
+      <div class="absolute inset-0 grid grid-cols-10 grid-rows-10 gap-1 pointer-events-none" id="grid-bg"></div>
+    </div>
+
+    <div class="container mx-auto px-6 py-12 relative z-10">
+      <nav class="flex justify-between items-center mb-16">
+        <div class="flex items-center">
+            <div class="bg-gradient-to-r from-purple-600 to-blue-500 w-12 h-12 rounded-full flex items-center justify-center mr-4 glow">
+            <span class="text-2xl font-bold">TS</span>
+            </div>
+          <h1 class="text-2xl font-bold header-font neon-text">Takudzwa Shereni</h1>
+        </div>
+        <div class="hidden md:flex space-x-6 items-center">
+          <a href="#" data-page="home" class="nav-link text-white hover:text-purple-400 transition subway-line">About</a>
+          <a href="#" data-page="projects" class="nav-link text-white hover:text-purple-400 transition subway-line">Projects</a>
+          <a href="#" data-page="skills" class="nav-link text-white hover:text-purple-400 transition subway-line">Skills</a>
+          <a href="#" data-page="contact" class="nav-link text-white hover:text-purple-400 transition subway-line">Contact</a>
+          <!-- GitHub Button -->
+          <a href="https://github.com/CodedByTK" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="text-white hover:text-purple-400 transition subway-line flex items-center space-x-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.42 2.865 8.166 6.839 9.49.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.157-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.34-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.687-.103-.253-.446-1.27.098-2.647 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.7 1.028 1.594 1.028 2.687 0 3.848-2.339 4.695-4.566 4.942.359.31.678.923.678 1.86 0 1.343-.012 2.426-.012 2.756 0 .268.18.58.688.481A10.02 10.02 0 0022 12.017C22 6.484 17.523 2 12 2z"/>
+            </svg>
+            <span class="hidden md:inline font-semibold">GitHub</span>
+          </a>
+        </div>
+        <button id="menu-btn" class="md:hidden text-white" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </nav>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden flex flex-col space-y-4 text-center mb-10">
+        <a href="#" data-page="home" class="nav-link text-white hover:text-purple-400 transition subway-line">About</a>
+        <a href="#" data-page="projects" class="nav-link text-white hover:text-purple-400 transition subway-line">Projects</a>
+        <a href="#" data-page="skills" class="nav-link text-white hover:text-purple-400 transition subway-line">Skills</a>
+        <a href="#" data-page="contact" class="nav-link text-white hover:text-purple-400 transition subway-line">Contact</a>
+        <a href="https://github.com/your-github-username" target="_blank" rel="noopener noreferrer" class="text-white hover:text-purple-400 transition subway-line flex justify-center items-center space-x-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.42 2.865 8.166 6.839 9.49.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.157-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.34-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.687-.103-.253-.446-1.27.098-2.647 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.7 1.028 1.594 1.028 2.687 0 3.848-2.339 4.695-4.566 4.942.359.31.678.923.678 1.86 0 1.343-.012 2.426-.012 2.756 0 .268.18.58.688.481A10.02 10.02 0 0022 12.017C22 6.484 17.523 2 12 2z"/>
+          </svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+
+      <!-- Main content sections -->
+      <main>
+        <!-- Home/About Section -->
+        <section id="home" class="page-section active py-20 bg-gradient-to-b from-purple-900/20 to-black">
+          <div class="container mx-auto px-6 max-w-4xl">
+            <div class="text-center mb-16">
+              <span class="text-electric-blue font-semibold">ABOUT ME</span>
+              <h2 class="text-4xl font-bold mt-2 header-font">Passionate Developer & Designer</h2>
+              <p class="max-w-2xl mx-auto mt-4 text-gray-300">I specialize in creating beautiful, functional websites and applications that help businesses grow.</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+              <img src="img/profile.png" alt="Takudzwa Shereni portrait" class="rounded-full w-64 h-64 object-cover neon-border" />
+              <div class="text-gray-300 text-lg leading-relaxed">
+                <p>Hello! I'm Takudzwa, a full-stack developer based in Bulawayo. I love turning ideas into reality using code. When I'm not coding, I enjoy photography and exploring new tech trends.</p>
+                <p class="mt-4">My goal is to deliver high-quality digital experiences that are both visually stunning and user-friendly.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="page-section py-20 bg-black">
+          <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center mb-16">
+              <span class="text-electric-blue font-semibold">PROJECTS</span>
+              <h2 class="text-4xl font-bold mt-2 header-font">Selected Works</h2>
+              <p class="max-w-2xl mx-auto mt-4 text-gray-300">A showcase of some of my favorite projects, demonstrating my skills and creativity.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <!-- Project 1 -->
+              <div class="project-card p-6 rounded-lg" data-project="group_portfolio">
+                <img src="img/background.png" alt="Group Portfolio Website screenshot" class="rounded mb-4 object-cover w-full h-48" />
+                <h3 class="font-bold text-xl mb-2">Group Portfolio Website</h3>
+                <p class="text-gray-300 mb-4">A group portfolio site with neon-themed design and smooth animations, built with CSS3 and JS.</p>
+                <a href="https:/codedbytk.github.io/Group-Portfolio" class="text-electric-blue font-semibold hover:underline" target="_blank" rel="noopener noreferrer">View Project</a>
+              </div>
+
+              <!-- Project 2 -->
+              <div class="project-card p-6 rounded-lg" data-project="ecomdashboard">
+                <img src="img/ecom.png" alt="E-commerce Dashboard screenshot" class="rounded mb-4 object-cover w-full h-48" />
+                <h3 class="font-bold text-xl mb-2">E-commerce Dashboard</h3>
+                <p class="text-gray-300 mb-4">A responsive admin dashboard for managing products, orders, and customers, built with React and Tailwind CSS.</p>
+                <a href="ecomdashboard.html" class="text-electric-blue font-semibold hover:underline" target="_blank" rel="noopener noreferrer">View Project</a>
+              </div>
+
+              <!-- Project 3 -->
+              <div class="project-card p-6 rounded-lg" data-project="travelblog">
+                <img src="img/harare.jpg" alt="Travel Blog screenshot" class="rounded mb-4 object-cover w-full h-48" />
+                <h3 class="font-bold text-xl mb-2">Travel Blog</h3>
+                <p class="text-gray-300 mb-4">A blog platform focused on travel stories and tips, featuring a clean UI and easy content management.</p>
+                <a href="travelblog.html" class="text-electric-blue font-semibold hover:underline" target="_blank" rel="noopener noreferrer">View Project</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="page-section py-20 bg-gradient-to-b from-black to-purple-900/20">
+          <div class="container mx-auto px-6 max-w-4xl">
+            <div class="text-center mb-16">
+              <span class="text-electric-blue font-semibold">SKILLS</span>
+              <h2 class="text-4xl font-bold mt-2 header-font">What I Bring to the Table</h2>
+              <p class="max-w-2xl mx-auto mt-4 text-gray-300">A blend of technical expertise and creative problem-solving to build modern web experiences.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+              <div class="tip-bubble p-6">
+                <div class="bg-purple-600 w-12 h-12 rounded-full flex items-center justify-center mb-4 mx-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20l9-5-9-5-9 5 9 5z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12v8" />
+                  </svg>
+                </div>
+                <h3 class="font-bold text-xl mb-3">Frontend Development</h3>
+                <p class="text-gray-300">HTML, CSS, JavaScript, React, Tailwind CSS, Responsive Design</p>
+              </div>
+
+              <div class="tip-bubble p-6">
+                <div class="bg-electric-blue w-12 h-12 rounded-full flex items-center justify-center mb-4 mx-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18M3 18h18" />
+                  </svg>
+                </div>
+                <h3 class="font-bold text-xl mb-3">Backend Development</h3>
+                <p class="text-gray-300">Node.js, Express, REST APIs, MongoDB, SQL</p>
+              </div>
+
+              <div class="tip-bubble p-6">
+                <div class="bg-neon-pink w-12 h-12 rounded-full flex items-center justify-center mb-4 mx-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6" />
+                  </svg>
+                </div>
+                <h3 class="font-bold text-xl mb-3">UI/UX Design</h3>
+                <p class="text-gray-300">Figma, Adobe XD, Wireframing, Prototyping, User Research</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="page-section py-20 bg-gradient-to-b from-purple-900/20 to-black relative overflow-hidden">
+          <div class="container mx-auto px-6 max-w-3xl">
+            <div class="text-center mb-16">
+              <span class="text-electric-blue font-semibold">CONTACT ME</span>
+              <h2 class="text-4xl font-bold mt-2 header-font neon-text">Let's Build Something Together</h2>
+              <p class="max-w-2xl mx-auto mt-4 text-gray-300">Whether you have a project idea or just want to say hi, feel free to reach out!</p>
+            </div>
+            <div class="flex flex-col md:flex-row md:gap-3 gap-4 justify-center items-center">
+              <a href="https://wa.me/263778763068" target="_blank" rel="noopener noreferrer" class="graffiti-btn px-5 py-2 rounded-lg text-white font-bold shadow-lg transition hover:scale-105 flex items-center space-x-2 mb-2 md:mb-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.198.297-.767.967-.94 1.166-.173.198-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.447-.521.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.372-.01-.571-.01-.198 0-.521.075-.793.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.075.149.198 2.099 3.205 5.077 4.372.711.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.288.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                  <path d="M12.004 2c-5.514 0-9.998 4.484-9.998 9.998 0 1.762.463 3.484 1.341 4.995l-1.426 5.217 5.342-1.404c1.464.801 3.125 1.192 4.741 1.192 5.514 0 9.998-4.484 9.998-9.998s-4.484-9.998-9.998-9.998zm0 18.182c-1.497 0-2.963-.393-4.242-1.137l-.304-.176-3.172.834.849-3.099-.198-.318c-.822-1.319-1.257-2.834-1.257-4.386 0-4.411 3.587-7.998 7.998-7.998s7.998 3.587 7.998 7.998-3.587 7.998-7.998 7.998z"/>
+                </svg>
+                <span>WhatsApp</span>
+              </a>
+              <a href="mailto:princepardonsherz@gmail.com" class="graffiti-btn px-5 py-2 rounded-lg text-white font-bold shadow-lg transition hover:scale-105 flex items-center space-x-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 13 4 6.01V6h16zm0 12H4V8.99l8 6.99 8-6.99V18z"/>
+                </svg>
+                <span>Email</span>
+              </a>
+            </div>
+            
+          </div>
+        </section>
+      </main>
+    </div>
+  </header>
+
+  
+  <footer class="bg-black py-12 mt-20">
+    <div class="container mx-auto px-6 text-center text-gray-500">
+      <p>&copy; 2025 CodedByTK. </p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true' || false;
+      menuBtn.setAttribute('aria-expanded', !expanded);
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Generate grid squares for animated background
+    document.addEventListener('DOMContentLoaded', () => {
+      const gridContainer = document.getElementById('grid-bg');
+      if (gridContainer) {
+        for (let i = 0; i < 100; i++) {
+          const div = document.createElement('div');
+          div.className = 'bg-transparent transition duration-300';
+          gridContainer.appendChild(div);
+        }
+      }
+    });
+
+    // Navigation and page switching logic
+    const navLinks = document.querySelectorAll('.nav-link');
+    const pageSections = document.querySelectorAll('.page-section');
+    const projectCards = document.querySelectorAll('.project-card');
+    const projectPages = {
+      neonportfolio: document.getElementById('neonportfolio'),
+      ecomdashboard: document.getElementById('ecomdashboard'),
+      travelblog: document.getElementById('travelblog')
+    };
+
+    function showPage(pageId) {
+      pageSections.forEach(section => {
+        if (section.id === pageId) {
+          section.classList.add('active');
+          window.scrollTo(0, 0);
+        } else {
+          section.classList.remove('active');
+        }
+      });
+      // Hide all project detail pages when switching main pages
+      Object.values(projectPages).forEach(proj => proj.classList.remove('active'));
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const page = link.getAttribute('data-page');
+        if (page) {
+          showPage(page);
+          if (!mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+            menuBtn.setAttribute('aria-expanded', false);
+          }
+        }
+      });
+    });
+
+    // Show project detail page on project card click
+    projectCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const project = card.getAttribute('data-project');
+        if (project && projectPages[project]) {
+          // Hide main pages
+          pageSections.forEach(section => section.classList.remove('active'));
+          // Show project page
+          projectPages[project].classList.add('active');
+          window.scrollTo(0, 0);
+        }
+      });
+    });
+
+    // Back buttons on project pages
+    document.getElementById('back-to-projects-1').addEventListener('click', () => {
+      showPage('projects');
+    });
+    document.getElementById('back-to-projects-2').addEventListener('click', () => {
+      showPage('projects');
+    });
+    document.getElementById('back-to-projects-3').addEventListener('click', () => {
+      showPage('projects');
+    });
+  </script>
+</body>
+</html>
