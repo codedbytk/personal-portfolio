@@ -7,7 +7,7 @@ Built with **HTML, Tailwind CSS, and JavaScript**, this site blends creativity a
 
 ## 🚀 Live Demo
 
-🔗 **Visit the website:** [https://codedbytk.github.io/Portfolio](https://codedbytk.github.io/Portfolio)
+🔗 **Visit the website:** [https://codedbytk.github.io/personal-portfolio](https://codedbytk.github.io/Portfolio)
 
 ---
 
@@ -44,12 +44,18 @@ Built with **HTML, Tailwind CSS, and JavaScript**, this site blends creativity a
 │ └── harare.jpg
 └── README.md # This file
 
+---
+
 🧑‍💻 Author
 
 👤 Takudzwa Shereni
 Full-Stack Developer & Designer
 🌍 Bulawayo, Zimbabwe
 
+---
+
 GitHub: CodedByTK
 WhatsApp: +263778763068
 Email: princepardonsherz@gmail.com
+
+---
