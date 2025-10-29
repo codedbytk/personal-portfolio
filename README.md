@@ -37,7 +37,7 @@ Built with **HTML, Tailwind CSS, and JavaScript**, this site blends creativity a
 🧑‍💻 Author
 
 - 👤 Takudzwa Shereni
-- Full-Stack Developer & Designer
+- Front-End Developer & Designer
 - 🌍 Bulawayo, Zimbabwe
 
 Contact me on:
