@@ -1,6 +1,6 @@
 # 🌌 Takudzwa Shereni – Personal Portfolio Website
 
-Welcome to my **personal portfolio website**, a visually immersive, neon-themed showcase of my work as a **Full-Stack Developer and Designer**.  
+Welcome to my **personal portfolio website**, a visually immersive, neon-themed showcase of my work as a **Front-End Developer and Designer**.  
 Built with **HTML, Tailwind CSS, and JavaScript**, this site blends creativity and code to highlight my skills, projects, and digital presence.
 
 ---
